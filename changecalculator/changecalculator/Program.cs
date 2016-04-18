@@ -30,8 +30,6 @@ namespace changecalculator
         }
         static decimal Cash(string prompt)
         {
-
-
             Console.WriteLine(prompt);
             while (true)
             {
@@ -48,10 +46,8 @@ namespace changecalculator
                 {
                     Console.WriteLine("Please enter the correct amount of money you have received from the customer.");
                 }
-
             }
         }
-
 
         static void Main(string[] args)
         {
@@ -61,12 +57,14 @@ namespace changecalculator
 
             while (cost > cash)
             {
-                Console.WriteLine("Customer didn't give enough money.");
+                Console.WriteLine("Customer didn't give you enough money.");
             }
             if (cash >= cost)
             {
                 decimal change = Math.Round(cash - cost, 2);
-                decimal quarters = Math.Floor(change / .25m);
+                decimal dollars = Math.Round(change / 1.0m);
+                decimal dollarsR = (change % 1.0m);
+                decimal quarters = Math.Floor(dollarsR / .25m);
                 decimal quartersR = (change % .25m);
                 decimal dimes = Math.Floor(quartersR / .10m);
                 decimal dimesR = (quartersR % .10m);
@@ -75,10 +73,48 @@ namespace changecalculator
                 decimal pennies = (nickelsR / .01m);
 
                 Console.WriteLine("Total change = " + change + " paid to customer");
-                Console.WriteLine("Give customer " + quarters + " quarters.");
-                Console.WriteLine("Give customer " + dimes + " dimes.");
-                Console.WriteLine("Give customer " + nickels + " nickels.");
-                Console.WriteLine("Give customer " + pennies + " pennies");
+                if (dollars < 2 & dollars > 0)
+                {
+                    Console.WriteLine("Give the customer " + dollars + " dollar, ");
+                }
+                else
+                {
+                    Console.WriteLine("Give the customer " + dollars + " dollars, ");
+                }
+
+                if (quarters < 2 & quarters > 0)
+                {
+                    Console.WriteLine(+ quarters + " quarter.");
+                }
+                else {
+                    Console.WriteLine(+ quarters + " quarters.");
+                }
+
+                if (dimes < 2 & dimes > 0)
+                {
+                    Console.WriteLine(+dimes + " dime.");
+                }
+                else {
+                    Console.WriteLine(+dimes + " dimes.");
+                }
+
+                if (nickels < 2 & nickels > 0)
+                {
+                    Console.WriteLine(+nickels + " nickel.");
+                }
+                else {
+                    Console.WriteLine(+nickels + " nickels.");
+                }
+
+                if (pennies < 2 & pennies > 0)
+                {
+                    Console.WriteLine("and 1 penny");
+                }
+                else
+                {
+                Console.WriteLine("and " + pennies + " pennies");
+                }
+
                 Console.ReadKey();
             }
         }
